@@ -75,6 +75,26 @@
         </div>
       </main>
     </div>
+    <div id="modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div id="modal-content" class="modal-content">
+          <div id="pdf-container" class="modal-body">
+            <canvas id="pdf-canvas"></canvas>
+          </div>
+          <div class="modal-footer justify-content-around">
+            <button id="prev" class="btn">
+              <img src="./assets/svgs/chevron-left.svg" alt="&#60;" />
+            </button>
+            <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+            <button id="next" class="btn">
+              <img src="./assets/svgs/chevron-right.svg" alt="&#62;" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
@@ -89,5 +109,6 @@
     <script type="text/javascript"></script>
     <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script src="/assets/scripts/index.js"></script>
+    <!-- EOF: Scripts -->
   </body>
 </html>

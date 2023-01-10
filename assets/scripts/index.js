@@ -1,100 +1,122 @@
 var firstEdition = document.getElementById('first-edition-en');
 firstEdition.addEventListener('click', function (oEvent) {
-  console.log('click');
-  $('#exampleModal').modal('toggle');
+  $('#modal').modal('toggle');
+  renderPDF();
 });
 
-// If absolute URL from the remote server is provided, configure the CORS
-// header on that server.
-var url = 'assets/pdfs/FirstEditionEn.pdf';
+function renderPDF() {
+  // If absolute URL from the remote server is provided, configure the CORS
+  // header on that server.
+  var url = 'assets/pdfs/FirstEditionEn.pdf';
 
-// Loaded via <script> tag, create shortcut to access PDF.js exports.
-var pdfjsLib = window['pdfjs-dist/build/pdf'];
+  // Loaded via <script> tag, create shortcut to access PDF.js exports.
+  var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
-// The workerSrc property shall be specified.
-pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+  // The workerSrc property shall be specified.
+  pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
 
-// Asynchronous download of PDF
-var loadingTask = pdfjsLib.getDocument(url);
-loadingTask.promise.then(
-  function (pdf) {
-    console.log('PDF loaded');
+  let pdfDoc = null,
+    pageNum = 1,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 1,
+    container = document.getElementById('pdf-container'),
+    canvas = document.getElementById('pdf-canvas'),
+    ctx = canvas.getContext('2d');
 
-    // Fetch the first page
-    var pageNumber = 1;
-    pdf.getPage(pageNumber).then(function (page) {
-      console.log('Page loaded');
-
-      var scale = 1.5;
-      var viewport = page.getViewport({ scale: scale });
-
-      // Prepare canvas using PDF page dimensions
-      var canvas = document.createElement('canvas');
-      var context = canvas.getContext('2d');
-      canvas.height = '200px';
-      canvas.width = '300px';
+  /**
+   * Get page info from document, resize canvas accordingly, and render page.
+   * @param num Page number.
+   */
+  function renderPage(num) {
+    pageRendering = true;
+    // Using promise to fetch the page
+    pdfDoc.getPage(num).then(function (page) {
+      var width = container.offsetWidth;
+      if (width > 700) {
+        scale = 1.43;
+      }
+      var viewport = page.getViewport({ scale: container.offsetWidth / page.getViewport({ scale: scale }).width });
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+      container.appendChild(canvas);
 
       // Render PDF page into canvas context
       var renderContext = {
-        canvasContext: context,
+        canvasContext: ctx,
         viewport: viewport,
       };
-
-      document.getElementById('page1').appendChild(canvas);
-      console.log(document.getElementById('page1'));
       var renderTask = page.render(renderContext);
+
+      // Wait for rendering to finish
       renderTask.promise.then(function () {
-        console.log('Page rendered');
+        pageRendering = false;
+        if (pageNumPending !== null) {
+          // New page rendering is pending
+          renderPage(pageNumPending);
+          pageNumPending = null;
+        }
       });
     });
-  },
-  function (reason) {
-    // PDF loading error
-    console.error(reason);
+
+    // Update page counters
+    document.getElementById('page_num').textContent = num;
   }
-);
 
-// let elPDFViewer = document.getElementById('first-edition-en');
-// // elPDFViewer.addEventListener('click', () => {
-// //   pdfRenderer();
-// // });
-// pdfRenderer();
-// function renderPDF(url, canvasContainer) {
-//   // Loaded via <script> tag, create shortcut to access PDF.js exports.
-//   var pdfjsLib = window['pdfjs-dist/build/pdf'];
+  /**
+   * If another page rendering in progress, waits until the rendering is
+   * finised. Otherwise, executes rendering immediately.
+   */
+  function queueRenderPage(num) {
+    if (pageRendering) {
+      pageNumPending = num;
+    } else {
+      renderPage(num);
+    }
+  }
 
-//   // The workerSrc property shall be specified.
-//   pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-//   // Render a specific page
-//   function renderPage(page) {
-//     console.log('page', page);
-//     let viewPort = page.getViewport({ scale: 1 });
-//     let canvas = document.createElement('canvas');
-//     let canvasContext = canvas.getContext('2d');
-//     canvas.height = viewPort.height;
-//     canvas.width = viewPort.width;
-//     let renderContext = {
-//       canvasContext: canvasContext,
-//       viewPort: viewPort,
-//     };
+  /**
+   * Displays previous page.
+   */
+  function onPrevPage() {
+    if (pageNum <= 1) {
+      return;
+    }
+    pageNum--;
+    queueRenderPage(pageNum);
+  }
+  document.getElementById('prev').addEventListener('click', onPrevPage);
 
-//     canvasContainer.appendChild(canvas);
-//     console.log('canvas', canvas);
+  /**
+   * Displays next page.
+   */
+  function onNextPage() {
+    if (pageNum >= pdfDoc.numPages) {
+      return;
+    }
+    pageNum++;
+    queueRenderPage(pageNum);
+  }
+  document.getElementById('next').addEventListener('click', onNextPage);
 
-//     page.render(renderContext).promise.then(() => console.log('page rendered'));
-//   }
+  /**
+   * Asynchronously downloads PDF.
+   */
+  pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
+    pdfDoc = pdfDoc_;
+    document.getElementById('page_count').textContent = pdfDoc.numPages;
 
-//   // Render multiple pages
-//   function renderPages(pdfDoc) {
-//     for (let num = 1; num <= 1; num++) {
-//       pdfDoc.getPage(num).then(renderPage);
-//     }
-//   }
+    // Initial/first page rendering
+    renderPage(pageNum);
+  });
 
-//   pdfjsLib.disableWorker = true;
-//   pdfjsLib.getDocument(url).promise.then(renderPages);
-// }
-
-// function pdfRenderer() {
-//   renderPDF('/assets/pdfs/FirstEditionEn.pdf', document.getElementById('holder'));
-// }
+  $('#modal').on('hidden.bs.modal', function (e) {
+    const canvas = document.getElementById('pdf-canvas');
+    const context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    pageNum = 1;
+    pageRendering = false;
+    pageNumPending = null;
+    pdfDoc.destroy();
+  });
+}

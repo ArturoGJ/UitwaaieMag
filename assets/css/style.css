@@ -98,3 +98,8 @@ img {
   background: rgba(0, 0, 0, 0.3);
   visibility: visible;
 }
+
+#pdf-container {
+  display: flex;
+  justify-content: center;
+}
