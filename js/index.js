@@ -21,6 +21,8 @@ Array.from(aEditions).forEach((edition) => {
 function renderPDF(id) {
   // If absolute URL from the remote server is provided, configure the CORS
   // header on that server.
+
+  // var url = `pdfs/${id}.pdf`;
   var url = `/UitwaaieMag/pdfs/${id}.pdf`;
 
   // Loaded via <script> tag, create shortcut to access PDF.js exports.
@@ -147,11 +149,11 @@ const homeContent = document.getElementById('home-content');
 aboutLink.addEventListener('click', (oEvent) => {
   homeContent.style.maxHeight = '0';
   aboutContent.style.maxHeight = '100vh';
-  aboutContent.style.paddingTop = '25%';
+  // aboutContent.style.paddingTop = '0';
 });
 
 homeLink.addEventListener('click', (oEvent) => {
   aboutContent.style.maxHeight = '0';
   homeContent.style.maxHeight = '100vh';
-  aboutContent.style.paddingTop = '0';
+  // aboutContent.style.paddingTop = '15%';
 });

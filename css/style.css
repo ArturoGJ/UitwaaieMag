@@ -3,6 +3,7 @@
   font-family: 'IBM Plex Mono', monospace;
   box-sizing: border-box;
   font-size: 16px;
+  background-color: rgb(247, 245, 240);
 }
 
 body,
@@ -23,7 +24,7 @@ html {
 .side-pannel-container {
   display: flex;
   flex-direction: column;
-  padding: 10px 30px;
+  padding-top: 10px;
   width: 20%;
   /* border: 1px solid rgba(0, 0, 0, 0.8); */
 }
@@ -55,6 +56,7 @@ main {
   display: flex;
   overflow-y: auto;
   flex-wrap: wrap;
+  justify-content: center;
   /* width: 80%; */
 
   /* display: grid;
@@ -76,6 +78,7 @@ main {
   border-radius: 2%;
   position: relative;
   overflow: hidden;
+  max-width: 35%;
 }
 
 img {
@@ -106,7 +109,7 @@ img {
   display: inline-flex;
   align-items: center;
   font-size: 28px;
-  z-index: -1;
+  background-color: transparent;
 }
 
 .edition-item:hover .img-description {
@@ -129,7 +132,7 @@ img {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  text-align: justify;
 }
 
 .about-text-container {
@@ -149,4 +152,13 @@ img {
   max-height: 0;
   padding-top: 25%;
   overflow: hidden;
+  padding: 10px 30px;
+}
+
+ul {
+  list-style-type: circle;
+}
+
+.pdf-modal {
+  background-color: transparent;
 }
