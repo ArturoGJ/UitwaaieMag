@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Uitwaaie Magazine</title>
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Manrope&display=swap" rel="stylesheet" />
@@ -19,42 +19,34 @@
   <body>
     <div class="container">
       <div class="side-pannel-container">
-        <header class="logo-container">Uitwaaie Logo</header>
+        <header class="logo-container">
+          <img src="images/uitwaaien_logo.png" alt="" srcset="" />
+        </header>
         <article class="mag-info-container">
-          <p class="info-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo ea, mollitia esse placeat, rerum vel incidunt ratione voluptates quae libero accusamus ex quisquam voluptas corporis aut
-            consequatur quia aperiam eveniet.
-          </p>
+          <!-- <p class="info-content">
+            Uitwaaein Magazine is a platform for art, culture, and social connection. Located in Wageningen, Uitwaaien Magazine features amateur and professional artists from the area and surroundings
+            seeking to create bridges and bring a breath of fresh wind to the mind of readers and contributors. Uitwaaien Magazine is a non-profit organisation that believes in art as a means of
+            connection. The magazine is printed twice a year, summer and winter, with each edition aiming for diverse and inclusive content. Everyone and all kinds of artistic disciplines are welcome.
+          </p> -->
         </article>
         <footer class="footer-container">
-          <p>About</p>
-          <p>Contact</p>
-          <p>Submit</p>
+          <p><a href="http://" target="_blank" rel="noopener noreferrer">About</a></p>
+          <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSdfSia4zNwCymj_cLtwjDQhGyKwXbuRNfcS9nCDOEEk0Q3UHA/viewform" target="_blank" rel="noopener noreferrer">Submit</a></p>
+          <a href="mailto:"></a>
+          <p><a href="mailto:uitwaaien.magazine@gmail.com">Contact</a></p>
         </footer>
       </div>
       <main class="editions-container">
         <div class="edition-item">
-          <img src="https://framerusercontent.com/images/64n4wnVJKDJspLlFZ6DarCP0M4.jpg" alt="" />
-          <div id="first-edition-en" class="img-description">
-            <span
-              >First Edition <br />
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat cumque, vitae rerum libero itaque excepturi minima cum recusandae amet? Eius maxime laudantium impedit! Sint quam et
-              quas voluptatibus eligendi ullam.</span
-            >
-          </div>
+          <img src="images/cover_1.1.png" alt="Cover_1.1" />
+          <div id="firstEditionEN" class="img-description"><span>First edition</span></div>
         </div>
         <div class="edition-item">
-          <img src="https://framerusercontent.com/images/InuNHIQ0GzOduJG7DthhRGJV8fY.jpg" alt="" />
-          <div class="img-description">
-            <span
-              >Eerste editie <br />
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam provident iure suscipit est placeat corporis, architecto officiis excepturi sint laudantium ducimus fugit dicta modi,
-              incidunt nesciunt voluptates ut impedit possimus.</span
-            >
-          </div>
+          <img src="images/cover_1.2.png" alt="Cover_1.2" />
+          <div id="firstEditionNL" class="img-description"><span>Eerste editie</span></div>
         </div>
         <div class="edition-item">
-          <img src="https://framerusercontent.com/images/InuNHIQ0GzOduJG7DthhRGJV8fY.jpg" alt="" />
+          <img src="images/cover_1.1.png" alt="" />
           <div class="img-description">
             <span
               >First Edition <br />
@@ -64,7 +56,7 @@
           </div>
         </div>
         <div class="edition-item">
-          <img src="https://framerusercontent.com/images/64n4wnVJKDJspLlFZ6DarCP0M4.jpg" alt="" />
+          <img src="images/cover_1.2.png" alt="" />
           <div class="img-description">
             <span
               >Eerste editie <br />
@@ -83,11 +75,11 @@
           </div>
           <div class="modal-footer justify-content-around">
             <button id="prev" class="btn">
-              <img src="./assets/svgs/chevron-left.svg" alt="&#60;" />
+              <img src="./svgs/chevron-left.svg" alt="&#60;" />
             </button>
             <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
             <button id="next" class="btn">
-              <img src="./assets/svgs/chevron-right.svg" alt="&#62;" />
+              <img src="./svgs/chevron-right.svg" alt="&#62;" />
             </button>
           </div>
         </div>
@@ -108,7 +100,7 @@
     ></script>
     <script type="text/javascript"></script>
     <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
-    <script src="/assets/scripts/index.js"></script>
+    <script src="/js/index.js"></script>
     <!-- EOF: Scripts -->
   </body>
 </html>
