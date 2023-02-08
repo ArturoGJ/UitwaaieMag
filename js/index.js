@@ -21,7 +21,7 @@ Array.from(aEditions).forEach((edition) => {
 function renderPDF(id) {
   // If absolute URL from the remote server is provided, configure the CORS
   // header on that server.
-  var url = `/pdfs/${id}.pdf`;
+  var url = `pdfs/${id}.pdf`;
 
   // Loaded via <script> tag, create shortcut to access PDF.js exports.
   var pdfjsLib = window['pdfjs-dist/build/pdf'];
@@ -155,12 +155,3 @@ homeLink.addEventListener('click', (oEvent) => {
   homeContent.style.maxHeight = '100vh';
   aboutContent.style.paddingTop = '0';
 });
-
-// const aboutLink = document.getElementById("about-link");
-// const content = document.getElementById("content");
-// const aboutPage = document.getElementById("about-page");
-
-// aboutLink.addEventListener("click", () => {
-//   content.style.maxHeight = "0";
-//   aboutPage.style.maxHeight = "100vh";
-// });
