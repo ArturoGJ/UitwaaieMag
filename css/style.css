@@ -28,6 +28,10 @@ html {
   /* border: 1px solid rgba(0, 0, 0, 0.8); */
 }
 
+main {
+  width: 80%;
+}
+
 .info-content {
   color: #999999;
 }
@@ -51,7 +55,7 @@ html {
   display: flex;
   overflow-y: auto;
   flex-wrap: wrap;
-  width: 80%;
+  /* width: 80%; */
 
   /* display: grid;
   grid-template-columns: 1fr 1fr;
@@ -113,4 +117,36 @@ img {
 #pdf-container {
   display: flex;
   justify-content: center;
+}
+
+/*
+  About page css.
+*/
+.about-container {
+  /* width: 80%; */
+  display: flex;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.about-text-container {
+  width: 60%;
+}
+
+#about-content,
+#home-content {
+  transition: all 0.3s ease-out;
+}
+
+#home-content {
+  max-height: 100vh;
+  /* padding: 1rem; */
+}
+#about-content {
+  max-height: 0;
+  padding-top: 25%;
+  overflow: hidden;
 }

@@ -1,3 +1,4 @@
+// Start of Editions handler
 // img-description is the class associated with the description that appears when you hover over an edition
 let aEditions = document.getElementsByClassName('img-description');
 Array.from(aEditions).forEach((edition) => {
@@ -133,3 +134,33 @@ function renderPDF(id) {
     pdfDoc.destroy();
   });
 }
+
+// End of Editions handler
+
+// Start of links handler
+const aboutLink = document.getElementById('about-link');
+const homeLink = document.getElementById('home-link');
+
+const aboutContent = document.getElementById('about-content');
+const homeContent = document.getElementById('home-content');
+
+aboutLink.addEventListener('click', (oEvent) => {
+  homeContent.style.maxHeight = '0';
+  aboutContent.style.maxHeight = '100vh';
+  aboutContent.style.paddingTop = '25%';
+});
+
+homeLink.addEventListener('click', (oEvent) => {
+  aboutContent.style.maxHeight = '0';
+  homeContent.style.maxHeight = '100vh';
+  aboutContent.style.paddingTop = '0';
+});
+
+// const aboutLink = document.getElementById("about-link");
+// const content = document.getElementById("content");
+// const aboutPage = document.getElementById("about-page");
+
+// aboutLink.addEventListener("click", () => {
+//   content.style.maxHeight = "0";
+//   aboutPage.style.maxHeight = "100vh";
+// });
