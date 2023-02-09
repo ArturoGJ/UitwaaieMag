@@ -144,7 +144,7 @@ img {
 }
 
 #home-content {
-  max-height: 90vh;
+  max-height: 100vh;
   /* padding: 1rem; */
 }
 #about-content {
@@ -201,6 +201,10 @@ ul {
   #about-content {
     overflow: auto;
     padding: 5px 10px;
+    padding-bottom: 10vh;
+  }
+  #home-content {
+    padding-bottom: 10vh;
   }
   .logo-container img {
     height: 100%;
