@@ -26,7 +26,6 @@ html {
   flex-direction: column;
   padding-top: 10px;
   width: 20%;
-  /* border: 1px solid rgba(0, 0, 0, 0.8); */
 }
 
 main {
@@ -145,7 +144,7 @@ img {
 }
 
 #home-content {
-  max-height: 100vh;
+  max-height: 90vh;
   /* padding: 1rem; */
 }
 #about-content {
@@ -161,4 +160,49 @@ ul {
 
 .pdf-modal {
   background-color: transparent;
+}
+
+/* Mobile styles */
+@media (max-width: 900px) {
+  /* Styles for devices with a maximum screen width of 900px */
+  * {
+    font-size: 14px;
+  }
+  .container {
+    flex-direction: column;
+  }
+  .side-pannel-container {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    max-height: 10vh;
+  }
+  .footer-container {
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  .footer-container p {
+    padding: 5px;
+  }
+  .img-description span {
+    font-size: unset;
+  }
+  main {
+    width: unset;
+  }
+  .edition-item {
+    flex: unset;
+    max-width: unset;
+  }
+  .about-text-container {
+    width: unset;
+  }
+  #about-content {
+    overflow: auto;
+    padding: 5px 10px;
+  }
+  .logo-container img {
+    height: 100%;
+  }
 }
