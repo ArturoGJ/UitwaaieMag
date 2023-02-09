@@ -1,5 +1,12 @@
+/**
+ * This file contains all the functions needed for the web-page
+ */
+
 // Start of Editions handler
 // img-description is the class associated with the description that appears when you hover over an edition
+/**
+ * Adding event listeners for all the editions.
+ */
 let aEditions = document.getElementsByClassName('img-description');
 Array.from(aEditions).forEach((edition) => {
   edition.addEventListener('click', function (oEvent) {
@@ -18,6 +25,10 @@ Array.from(aEditions).forEach((edition) => {
   });
 });
 
+/**
+ * Function to render the PDF on the modal.
+ * @param {string} id
+ */
 function renderPDF(id) {
   // If absolute URL from the remote server is provided, configure the CORS
   // header on that server.
@@ -146,6 +157,9 @@ const homeLink = document.getElementById('home-link');
 const aboutContent = document.getElementById('about-content');
 const homeContent = document.getElementById('home-content');
 
+/**
+ * Adding event listeners for click events so that an animation is played when switching from home to about.
+ */
 aboutLink.addEventListener('click', (oEvent) => {
   homeContent.style.maxHeight = '0';
   aboutContent.style.maxHeight = '100vh';
