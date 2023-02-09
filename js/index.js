@@ -163,13 +163,13 @@ const homeContent = document.getElementById('home-content');
  */
 aboutLink.addEventListener('click', (oEvent) => {
   homeContent.style.maxHeight = '0';
-  aboutContent.style.maxHeight = '100vh';
+  aboutContent.style.maxHeight = '99vh';
 });
 
 [homeLink, logo].forEach((element) => {
   element.addEventListener('click', (oEvent) => {
     aboutContent.style.maxHeight = '0';
-    homeContent.style.maxHeight = '100vh';
+    homeContent.style.maxHeight = '99vh';
   });
 });
 

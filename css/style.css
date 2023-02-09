@@ -13,12 +13,11 @@ html {
   overflow: hidden;
 }
 
-.container {
+.content-container {
   display: flex;
   flex-direction: row;
-  padding: 10px;
   height: 100vh;
-  max-width: unset !important; /*Lazy because of bootstrap*/
+  /* max-width: unset !important; Lazy because of bootstrap */
 }
 
 .side-pannel-container {
@@ -38,6 +37,7 @@ main {
 
 .footer-container {
   margin-top: auto;
+  padding-left: 1rem;
 }
 
 .footer-container a {
@@ -144,7 +144,7 @@ img {
 }
 
 #home-content {
-  max-height: 100vh;
+  max-height: 99vh;
   /* padding: 1rem; */
 }
 #about-content {
@@ -167,7 +167,7 @@ ul {
   * {
     font-size: 14px;
   }
-  .container {
+  .content-container {
     flex-direction: column;
   }
   .side-pannel-container {
