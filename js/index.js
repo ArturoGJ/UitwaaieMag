@@ -20,13 +20,24 @@ Array.from(aEditions).forEach((edition) => {
     }
 
     let id = node.id;
-    $('#modal').modal('toggle');
-    renderPDF(id);
+    /**
+     * Open pdf in another tab.
+     */
+    // var url = `pdfs/${id}.pdf`;
+    var url = `/UitwaaieMag/pdfs/${id}.pdf`;
+    window.open(url, '_blank');
+
+    /**
+     * Open pdf in modal... doesn't look good on mobile.
+     */
+    // $('#modal').modal('toggle');
+    // renderPDF(id);
   });
 });
 
 /**
- * Function to render the PDF on the modal.
+ * Function to render the PDF on the modal, looks good on desktop but not on mobile.
+ * Not being used ATM but I like it.
  * @param {string} id
  */
 function renderPDF(id) {
