@@ -149,7 +149,6 @@ img {
 }
 #about-content {
   max-height: 0;
-  padding-top: 25%;
   overflow: hidden;
   padding: 10px 30px;
 }
@@ -200,11 +199,19 @@ ul {
   }
   #about-content {
     overflow: auto;
-    padding: 5px 10px;
-    padding-bottom: 10vh;
+    position: fixed;
+    top: 10vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 10px;
   }
   #home-content {
-    padding-bottom: 10vh;
+    position: fixed;
+    top: 10vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
   .logo-container img {
     height: 100%;

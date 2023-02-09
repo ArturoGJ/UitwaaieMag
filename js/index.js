@@ -164,22 +164,12 @@ const homeContent = document.getElementById('home-content');
 aboutLink.addEventListener('click', (oEvent) => {
   homeContent.style.maxHeight = '0';
   aboutContent.style.maxHeight = '100vh';
-  if (isMobile()) {
-    homeContent.style.paddingBottom = '0';
-    aboutContent.style.paddingBottom = '10vh';
-  }
-  // aboutContent.style.paddingTop = '0';
 });
 
 [homeLink, logo].forEach((element) => {
   element.addEventListener('click', (oEvent) => {
     aboutContent.style.maxHeight = '0';
     homeContent.style.maxHeight = '100vh';
-    if (isMobile()) {
-      aboutContent.style.paddingBottom = '0';
-      homeContent.style.paddingBottom = '10vh';
-    }
-    // aboutContent.style.paddingTop = '15%';
   });
 });
 
