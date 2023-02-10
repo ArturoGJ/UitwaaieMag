@@ -175,12 +175,16 @@ const homeContent = document.getElementById('home-content');
 aboutLink.addEventListener('click', (oEvent) => {
   homeContent.style.maxHeight = '0';
   aboutContent.style.maxHeight = '99vh';
+  aboutContent.style.overflowY = 'auto';
+  homeContent.scrollTop = 0; // For Safari
 });
 
 [homeLink, logo].forEach((element) => {
   element.addEventListener('click', (oEvent) => {
     aboutContent.style.maxHeight = '0';
     homeContent.style.maxHeight = '99vh';
+    aboutContent.style.overflowY = 'hidden';
+    aboutContent.scrollTop = 0;
   });
 });
 
