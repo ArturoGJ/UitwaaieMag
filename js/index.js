@@ -176,7 +176,13 @@ aboutLink.addEventListener('click', (oEvent) => {
   homeContent.style.maxHeight = '0';
   aboutContent.style.maxHeight = '99vh';
   aboutContent.style.overflowY = 'auto';
-  homeContent.scrollTop = 0; // For Safari
+  homeContent.scrollTop = 0;
+
+  let menu = document.getElementById('menus');
+  if (menu) {
+    menu.classList.remove('menu-open');
+    document.getElementById('menu-checkbox').checked = false;
+  }
 });
 
 [homeLink, logo].forEach((element) => {
@@ -185,10 +191,20 @@ aboutLink.addEventListener('click', (oEvent) => {
     homeContent.style.maxHeight = '99vh';
     aboutContent.style.overflowY = 'hidden';
     aboutContent.scrollTop = 0;
+    let menu = document.getElementById('menus');
+    if (menu) {
+      menu.classList.remove('menu-open');
+      document.getElementById('menu-checkbox').checked = false;
+    }
   });
 });
 
 function isMobile() {
   const viewportWidth = window.innerWidth;
   return viewportWidth <= 900;
+}
+
+function openMenu() {
+  let menu = document.getElementById('menus');
+  menu.classList.toggle('menu-open');
 }
