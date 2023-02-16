@@ -265,6 +265,11 @@ function getMenuElementsAndText() {
       textNL: 'Over Ons',
       textEN: 'About',
     },
+    newsLink: {
+      element: document.getElementById('news-link'),
+      textNL: 'Nieuws',
+      textEN: 'News',
+    },
     submitLink: {
       element: document.getElementById('submit-link'),
       textNL: 'Inzenden',
