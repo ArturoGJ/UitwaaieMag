@@ -164,40 +164,63 @@ function renderPDF(id) {
 // Start of links handler
 const aboutLink = document.getElementById('about-link');
 const homeLink = document.getElementById('home-link');
+const newsLink = document.getElementById('news-link');
 const logo = document.getElementById('logo-img');
 
 const aboutContent = document.getElementById('about-content');
 const homeContent = document.getElementById('home-content');
+const newsContent = document.getElementById('news-content');
 
 /**
  * Adding event listeners for click events so that an animation is played when switching from home to about.
  */
 aboutLink.addEventListener('click', (oEvent) => {
   homeContent.style.maxHeight = '0';
+  homeContent.scrollTop = 0;
+  newsContent.style.maxHeight = '0';
+  newsContent.style.overflowY = 'hidden';
+  newsContent.scrollTop = 0;
+
   aboutContent.style.maxHeight = '99vh';
   aboutContent.style.overflowY = 'auto';
-  homeContent.scrollTop = 0;
 
+  closeMenu();
+});
+
+[homeLink, logo].forEach((element) => {
+  element.addEventListener('click', (oEvent) => {
+    homeContent.style.maxHeight = '99vh';
+
+    aboutContent.style.maxHeight = '0';
+    aboutContent.style.overflowY = 'hidden';
+    aboutContent.scrollTop = 0;
+    newsContent.style.maxHeight = '0';
+    newsContent.style.overflowY = 'hidden';
+    newsContent.scrollTop = 0;
+
+    closeMenu();
+  });
+});
+
+newsLink.addEventListener('click', (oEvent) => {
+  homeContent.style.maxHeight = '0';
+  homeContent.scrollTop = 0;
+  aboutContent.style.maxHeight = '0';
+  aboutContent.style.overflowY = 'hidden';
+  aboutContent.scrollTop = 0;
+
+  newsContent.style.maxHeight = '99vh';
+  newsContent.style.overflowY = 'auto';
+  closeMenu();
+});
+
+function closeMenu() {
   let menu = document.getElementById('menus');
   if (menu) {
     menu.classList.remove('menu-open');
     document.getElementById('menu-checkbox').checked = false;
   }
-});
-
-[homeLink, logo].forEach((element) => {
-  element.addEventListener('click', (oEvent) => {
-    aboutContent.style.maxHeight = '0';
-    homeContent.style.maxHeight = '99vh';
-    aboutContent.style.overflowY = 'hidden';
-    aboutContent.scrollTop = 0;
-    let menu = document.getElementById('menus');
-    if (menu) {
-      menu.classList.remove('menu-open');
-      document.getElementById('menu-checkbox').checked = false;
-    }
-  });
-});
+}
 
 function isMobile() {
   const viewportWidth = window.innerWidth;
@@ -213,17 +236,19 @@ function openMenu() {
 function onChangeLanguage(value) {
   let menu = getMenuElementsAndText();
   let about = getAboutElementsAndText();
+  let news = getNewsElementsAndText();
 
   let language = value === 'NL' || value === 'EN' ? value : 'NL';
 
-  for (const key in menu) {
-    let element = menu[key].element;
-    let text = menu[key][`text${language}`];
-    element.innerText = text;
-  }
-  for (const key in about) {
-    let element = about[key].element;
-    let text = about[key][`text${language}`];
+  setText(menu, language);
+  setText(about, language);
+  setText(news, language);
+}
+
+function setText(oElementsAndText, sLanguage) {
+  for (const key in oElementsAndText) {
+    let element = oElementsAndText[key].element;
+    let text = oElementsAndText[key][`text${sLanguage}`];
     element.innerText = text;
   }
 }
@@ -308,6 +333,21 @@ function getAboutElementsAndText() {
       element: document.getElementById('about-contact'),
       textNL: 'Heb je interesse om je als vrijwilliger of bestuurslid bij het project aan te sluiten? Stuur een e-mail naar uitwaaien.magazine@gmail.com',
       textEN: 'Are you interested in joining the project as a volunteer or board member? Send an email to uitwaaien.magazine@gmail.com',
+    },
+  };
+}
+
+function getNewsElementsAndText() {
+  return {
+    newsTitle: {
+      element: document.getElementById('news-title'),
+      textNL: 'Nieuws',
+      textEN: 'News',
+    },
+    firstParagraph: {
+      element: document.getElementById('news-first-paragraph'),
+      textNL: 'Inzendingen voor de tweede editie van Uitwaaien zijn nu open!',
+      textEN: "Submissions for Uitwaaien's second edition are now open!",
     },
   };
 }
